@@ -2,11 +2,13 @@
   "name": "vue-project",
   "version": "0.0.0",
   "private": true,
-  "type": "module",
+  "main": "electron/main.js",
+  "author": "喵喵喵",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "electron:dev": "concurrently vite \"electron .\"",
+    "electron:build": "npm run build && electron-builder",
+    "postinstall": "electron-builder install-app-deps",
+    "build": "vite build"
   },
   "dependencies": {
     "vue": "^3.4.15",
@@ -14,6 +16,53 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.3",
+    "concurrently": "^8.2.2",
+    "electron": "^28.2.1",
+    "electron-builder": "^24.9.1",
     "vite": "^5.0.11"
+  },
+  "build": {
+    "appId": "your.id",
+    "productName": "Electron + Vue3 开发桌面应用",
+    "copyright": "Copyright © year ${author}",
+    "directories": {
+      "output": "app_client"
+    },
+    "mac": {
+      "category": "public.app-category.music",
+      "icon": "build/icon.icns",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico"
+    }
   }
 }
