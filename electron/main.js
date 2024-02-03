@@ -36,9 +36,9 @@ const createWindow = () => {
 
   // 使用 loadURL 加载 http://localhost:3004 ，也就是我们刚才创建的 Vue 项目地址
   // 3004 改为你 Vue 项目的端口号
-  // mainWindow.loadURL("http://localhost:3004/");
+  mainWindow.loadURL("http://localhost:3004/");
   // 如果使用了 nginx 代理，url 改为代理地址
-  mainWindow.loadURL(`file://${path.join(__dirname, "../dist/index.html")}`);
+//   mainWindow.loadURL(`file://${path.join(__dirname, "../dist/index.html")}`);
 };
 
 // 在应用准备就绪时调用函数
